@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 def distance(x, y, a, b):
     return abs(x-a)+abs(y-b)
 
