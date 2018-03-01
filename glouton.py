@@ -23,27 +23,25 @@ def glouton(R, C, F, N, B, T, rides, fscore):
             if car.t_busy > 0:
                 # Voiture en trajet
                 car.t_busy = car.t_busy - 1
-            elif car.t_busy == 0:
+            if car.t_busy == 0:
                 # Arrive a destination
                 if car.ride is not None:
                     # Arrive a la fin d'une course
                     ride = car.ride
                     car.ride = None
-                    print("{} FIN {} Voiture {} arrivée en {} {}".format(t, ride.i, car.i, ride.end.x, ride.end.y))
+                    # print("{} FIN {} Voiture {} arrivée en {} {}".format(t, ride.i, car.i, ride.end.x, ride.end.y))
                     car.pos = ride.end
                     start(B, t, car, rides, fscore, solution)
-                    # TODO POINTS
                 if car.requested is not None:
                     # Arrive pour le pickup d'une course
                     ride = car.requested
                     car.requested = None
                     car.ride = ride
-                    print("{} DEB {} Voiture {} arrivée en {} {}".format(t, ride.i, car.i, ride.start.x, ride.start.y))
+                    # print("{} DEB {} Voiture {} arrivée en {} {}".format(t, ride.i, car.i, ride.start.x, ride.start.y))
                     car.pos = ride.start
                     car.t_busy = max(0, ride.ti - t) + dist(car.pos, ride.end)
-                # TODO chercher le meilleur bail TMTC
-                # et l'assigner à car.requested
                 if car.ride is None and car.requested is None:
+                    # Si aucune course en cours, on passe à la suivante
                     start(B, t, car, rides, fscore, solution)
     return solution
 
