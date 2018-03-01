@@ -1,4 +1,8 @@
 #!/usr/bin/python
+from math import abs
+
+def distance(x, y, a, b):
+    return abs(x-a)+abs(y-b)
 
 class Coords:
     def __init__(self, x, y):
@@ -16,6 +20,7 @@ class Ride:
         self.end = Coords(x1,y1)
         self.ti = ti
         self.tf = tf
+        self.d = distance(x0, y0, x1, y1)
 
     def __str__(self):
         return ' '.join([str(self.x0), str(self.y0), str(self.x1), str(self.y1), str(self.ti), str(self.tf)])
@@ -33,10 +38,8 @@ def read(file_path):
         lines = [line.replace("\n", "") for line in f.readlines()]
         R, C, F, N, B, T = tuple(map(int, lines[0].split(" ")))
         rides = []
-        i = 0
-        for line in lines[1:]:
-            ride = Ride(i, *tuple(map(int, line.split(" "))))
-            i = i + 1
+        for idx, line in enumerate(lines[1:]):
+            ride = Ride(idx, *tuple(map(int, line.split(" "))))
             rides.append(ride)
         return R, C, F, N, B, T, rides
 
