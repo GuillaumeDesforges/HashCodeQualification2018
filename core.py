@@ -5,6 +5,10 @@ class Coords:
         self.x = x
         self.y = y
 
+def dist(pt1, pt2):
+    return(abs(pt1.x-pt2.x)+abs(pt1.y-pt2.y))
+
+
 class Ride:
     def __init__(self, x0, y0, x1, y1, ti, tf):
         self.ini = Coords(x0,y0)
