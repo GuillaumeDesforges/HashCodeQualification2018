@@ -10,7 +10,8 @@ def dist(pt1, pt2):
 
 
 class Ride:
-    def __init__(self, x0, y0, x1, y1, ti, tf):
+    def __init__(self, i, x0, y0, x1, y1, ti, tf):
+        self.i = i
         self.start = Coords(x0,y0)
         self.end = Coords(x1,y1)
         self.ti = ti
@@ -20,7 +21,8 @@ class Ride:
         return ' '.join([str(self.x0), str(self.y0), str(self.x1), str(self.y1), str(self.ti), str(self.tf)])
 
 class Car:
-    def __init__(self):
+    def __init__(self, i):
+        self.i = i
         self.pos = Coords(0,0)
         self.requested = None
         self.ride = None
@@ -31,10 +33,17 @@ def read(file_path):
         lines = [line.replace("\n", "") for line in f.readlines()]
         R, C, F, N, B, T = tuple(map(int, lines[0].split(" ")))
         rides = []
+        i = 0
         for line in lines[1:]:
-            ride = Ride(*tuple(map(int, line.split(" "))))
+            ride = Ride(i, *tuple(map(int, line.split(" "))))
+            i = i + 1
             rides.append(ride)
         return R, C, F, N, B, T, rides
+
+def write(file_path, solution):
+    with open(file_path, 'w') as f:
+        for car_rides in solution:
+            f.write(str(len(car_rides)) + " " + ' '.join(map(str, car_rides)) + "\n")
 
 # Example
 def fscore0(B, t, car, ride):
