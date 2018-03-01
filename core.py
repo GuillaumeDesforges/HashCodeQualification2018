@@ -21,7 +21,7 @@ class Ride:
 
 class Car:
     def __init__(self):
-        self.coords = Coords(0,0)
+        self.pos = Coords(0,0)
         self.target = None
 
     def distance(self, x, y):
