@@ -34,7 +34,7 @@ def evolutedScore(B,t,car,ride,density):
     hereInTime = ((ride.tf - t) > (timeToStart+dist(ride.start,ride.end)))
     score = -1
     if hereInTime:
-        hereForBonu,s = ((ride.ti - t)>timeToStart)
+        hereForBonus = ((ride.ti - t)>timeToStart)
         totBenef = lenght(ride)
         if hereForBonus:
             totBenef += B
