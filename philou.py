@@ -1,7 +1,11 @@
-from core import *
 from random import *
 from collections import deque
 from math import *
+#!/usr/bin/python
+from math import abs
+
+def distance(x, y, a, b):
+    return abs(x-a)+abs(y-b)
 
 MU = 10
 
@@ -23,6 +27,16 @@ display(ord_rides)
 #t_rides = [[] for i in range(T)]    # Rides beginning at time id
 #for ride in t_rides:
 #    t_rides[ride.ti].append(ride)
+
+class Ride:
+    def __init__(self, idx, x0, y0, x1, y1, ti, tf):
+        self.idx = idx
+        self.x0 = x0
+        self.y0 = y0
+        self.x1 = x1
+        self.y1       self.ti = ti
+        self.tf = tf
+        self.d = distance(x0, y0, x1, y1)
 
 def Car2:
     def __init__(self, idx):
