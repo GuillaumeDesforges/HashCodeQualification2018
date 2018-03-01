@@ -24,10 +24,7 @@ class Car:
         self.pos = Coords(0,0)
         self.requested = None
         self.ride = None
-        self.t_travel = 0
-
-    def distance(self, x, y):
-        return abs(self.x - x) + abs(self.y - y)
+        self.t_busy = 0
 
 def read(file_path):
     with open(file_path) as f:
