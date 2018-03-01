@@ -11,8 +11,8 @@ def dist(pt1, pt2):
 
 class Ride:
     def __init__(self, x0, y0, x1, y1, ti, tf):
-        self.ini = Coords(x0,y0)
-        self.fin = Coords(x1,y1)
+        self.start = Coords(x0,y0)
+        self.end = Coords(x1,y1)
         self.ti = ti
         self.tf = tf
 
@@ -22,7 +22,8 @@ class Ride:
 class Car:
     def __init__(self):
         self.pos = Coords(0,0)
-        self.target = None
+        self.requested = None
+        self.ride = None
         self.t_travel = 0
 
     def distance(self, x, y):
