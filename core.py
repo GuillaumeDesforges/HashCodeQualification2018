@@ -17,6 +17,7 @@ class Car:
         self.x = 0
         self.y = 0
         self.target = None
+        self.t_travel = 0
 
     def distance(self, x, y):
         return abs(self.x - x) + abs(self.y - y)
