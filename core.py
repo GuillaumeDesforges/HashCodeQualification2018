@@ -1,11 +1,14 @@
 #!/usr/bin/python
 
+class Coords:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
 class Ride:
     def __init__(self, x0, y0, x1, y1, ti, tf):
-        self.x0 = x0
-        self.y0 = y0
-        self.x1 = x1
-        self.y1 = y1
+        self.ini = Coords(x0,y0)
+        self.fin = Coords(x1,y1)
         self.ti = ti
         self.tf = tf
 
