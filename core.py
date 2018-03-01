@@ -8,7 +8,7 @@ class Ride:
         self.tf = tf
 
     def __str__(self):
-        return ' '.join([x0, y0, x1, y1, ti, tf])
+        return ' '.join([str(self.x0), str(self.y0), str(self.x1), str(self.y1), str(self.ti), str(self.tf)])
 
 def read(file_path):
     with open(file_path) as f:
@@ -19,6 +19,6 @@ def read(file_path):
             ride = Ride(*tuple(map(int, lines[0].split(" "))))
             rides.append(ride)
         return R, C, F, N, B, T, rides
-            
+
 if __name__ == "__main__":
     print(*read("a_example.in"))
