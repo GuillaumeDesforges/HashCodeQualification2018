@@ -10,7 +10,7 @@ class Ride:
         self.tf = tf
 
     def __str__(self):
-        return ' '.join(map(str, [x0, y0, x1, y1, ti, tf]))
+        return ' '.join([str(self.x0), str(self.y0), str(self.x1), str(self.y1), str(self.ti), str(self.tf)])
 
 class Car:
     def __init__(self):
