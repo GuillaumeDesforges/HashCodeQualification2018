@@ -1,7 +1,9 @@
+#!/usr/bin/python
+
 from random import *
 from collections import deque
 from math import *
-#!/usr/bin/python
+from core import write
 
 def distance(x, y, a, b):
     return abs(x-a)+abs(y-b)
@@ -54,37 +56,47 @@ def neighbour(solution):
 
 comp_ti = lambda ride: (ride.ti, -ride.d)
 
-R, C, F, N, B, T, rides = read("./a_example.in")
-rides = deque(sorted(rides, key=comp_ti))
+def main(instance):
+    R, C, F, N, B, T, rides = read(instance+".in")
+    rides = deque(sorted(rides, key=comp_ti))
 
-#t_rides = [[] for i in range(T)]    # Rides beginning at time id
-#for ride in t_rides:
-#    t_rides[ride.ti].append(ride)
+    #t_rides = [[] for i in range(T)]    # Rides beginning at time id
+    #for ride in t_rides:
+    #    t_rides[ride.ti].append(ride)
 
-# available_cars = [[Car2(idx) for idx in range(N)]]  # Cars availble at time id
-# available_cars.extend([[] for i in range(T-1)])
-available_cars = deque([Car(idx) for idx in range(F)])
+    # available_cars = [[Car2(idx) for idx in range(N)]]  # Cars availble at time id
+    # available_cars.extend([[] for i in range(T-1)])
+    available_cars = deque([Car(idx) for idx in range(F)])
 
-def score(car, ride):
-    pass
+    def score(car, ride):
+        pass
 
-car = available_cars.popleft()
-again = True
-while car.time < T:
-    waiting_zone = []
-    print("Car :", car)
-    while rides:
-        ride = rides.popleft()
-        print(len(rides), len(available_cars))
-        print("- Ride :", ride)
-        di = distance(ride.x0, ride.y0, car.x, car.y)
-        if di+ride.d+car.time < ride.tf:
-            car.path.append(ride.idx)
-            car.time = max(ride.ti, car.time+di)
-            available_cars.append(car)
-            rides.extendleft(waiting_zone[max(0, len(waiting_zone)-MU):])
-            break
-        waiting_zone.append(ride)
-    else:
-        break
     car = available_cars.popleft()
+    again = True
+    while car.time < T:
+        waiting_zone = []
+        print("Car :", car)
+        while rides:
+            ride = rides.popleft()
+            #print(len(rides), len(available_cars))
+            #print("- Ride :", ride)
+            di = distance(ride.x0, ride.y0, car.x, car.y)
+            if di+ride.d+car.time < ride.tf:
+                car.path.append(ride.idx)
+                car.time = max(ride.ti, car.time+di)
+                available_cars.append(car)
+                rides.extendleft(waiting_zone[max(0, len(waiting_zone)-MU):])
+                break
+            waiting_zone.append(ride)
+        else:
+            available_cars.append(car)
+            break
+        car = available_cars.popleft()
+
+    write(instance+".out", [car.path for car in available_cars])
+
+main("a_example")
+main("b_should_be_easy")
+main("c_no_hurry")
+main("d_metropolis")
+main("e_high_bonus")
